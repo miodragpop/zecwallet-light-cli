@@ -144,13 +144,13 @@ impl LightClientConfig {
         } else {
             if cfg!(target_os="macos") || cfg!(target_os="windows") {
                 zcash_data_location = dirs::data_dir().expect("Couldn't determine app data directory!");
-                zcash_data_location.push("Zcash");
+                zcash_data_location.push("ZeroClassic");
             } else {
                 if dirs::home_dir().is_none() {
                     info!("Couldn't determine home dir!");
                 }
                 zcash_data_location = dirs::home_dir().expect("Couldn't determine home directory!");
-                zcash_data_location.push(".zcash");
+                zcash_data_location.push(".zeroclassic");
             };
 
             match &self.chain_name[..] {

@@ -23,33 +23,32 @@ checksum = "aae1277d39aeec15cb388266ecc24b11c80469deae6067e17a1a7aa9e5c1f234"
 
 [[package]]
 name = "aes"
-version = "0.5.0"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dd2bc6d3f370b5666245ff421e231cba4353df936e26986d2918e61a8fd6aef6"
+checksum = "884391ef1066acaa41e766ba8f596341b96e93ce34f9a43e7d24bf0a0eaf0561"
 dependencies = [
  "aes-soft",
  "aesni",
- "block-cipher",
+ "cipher",
 ]
 
 [[package]]
 name = "aes-soft"
-version = "0.5.0"
+version = "0.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "63dd91889c49327ad7ef3b500fd1109dbd3c509a03db0d4a9ce413b79f575cb6"
+checksum = "be14c7498ea50828a38d0e24a765ed2effe92a705885b57d029cd67d45744072"
 dependencies = [
- "block-cipher",
- "byteorder",
+ "cipher",
  "opaque-debug 0.3.0",
 ]
 
 [[package]]
 name = "aesni"
-version = "0.8.0"
+version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0a6fe808308bb07d393e2ea47780043ec47683fcf19cf5efc8ca51c50cc8c68a"
+checksum = "ea2e11f5e94c2f7d386164cc2aa1f97823fed6f259e486940a71c174dd01b0ce"
 dependencies = [
- "block-cipher",
+ "cipher",
  "opaque-debug 0.3.0",
 ]
 
@@ -281,22 +280,13 @@ dependencies = [
 ]
 
 [[package]]
-name = "block-cipher"
-version = "0.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f337a3e6da609650eb74e02bc9fac7b735049f7623ab12f2e4c719316fcc7e80"
-dependencies = [
- "generic-array 0.14.4",
-]
-
-[[package]]
 name = "block-modes"
-version = "0.6.1"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0c9b14fd8a4739e6548d4b6018696cf991dcf8c6effd9ef9eb33b29b8a650972"
+checksum = "57a0e8073e8baa88212fb5823574c02ebccb395136ba9a164ab89379ec6072f0"
 dependencies = [
- "block-cipher",
  "block-padding 0.2.1",
+ "cipher",
 ]
 
 [[package]]
@@ -406,6 +396,15 @@ dependencies = [
  "num-traits",
  "time",
  "winapi 0.3.9",
+]
+
+[[package]]
+name = "cipher"
+version = "0.2.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "12f8e7987cbd042a63249497f41aed09f8e65add917ea6566effbc56578d6801"
+dependencies = [
+ "generic-array 0.14.4",
 ]
 
 [[package]]
@@ -674,7 +673,8 @@ checksum = "e78d4f1cc4ae33bbfc157ed5d5a5ef3bc29227303d595861deb238fcec4e9457"
 [[package]]
 name = "equihash"
 version = "0.1.0"
-source = "git+https://github.com/adityapk00/librustzcash?rev=c31a04a4dbfa5a2ac013139db229f41cd421754d#c31a04a4dbfa5a2ac013139db229f41cd421754d"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4127688f6177e3f57521881cb1cfd90d1228214f9dc43b8efe6f6c6948cd8280"
 dependencies = [
  "blake2b_simd",
  "byteorder",
@@ -745,9 +745,9 @@ checksum = "3f9eec918d3f24069decb9af1554cad7c880e2da24a9afd88aca000531ab82c1"
 
 [[package]]
 name = "fpe"
-version = "0.3.1"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ef2196a22f6d98bbde79ae510eb4f397bd446cfbd6c26425e25ec81442a31bab"
+checksum = "a25080721bbcd2cd4d765b7d607ea350425fa087ce53cd3e31afcacdab850352"
 dependencies = [
  "aes",
  "block-modes",
@@ -2179,7 +2179,16 @@ version = "0.19.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c6179428c22c73ac0fbb7b5579a56353ce78ba29759b3b8575183336ea74cdfb"
 dependencies = [
- "secp256k1-sys",
+ "secp256k1-sys 0.3.0",
+]
+
+[[package]]
+name = "secp256k1"
+version = "0.20.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "733b114f058f260c0af7591434eef4272ae1a8ec2751766d3cb89c6df8d5e450"
+dependencies = [
+ "secp256k1-sys 0.4.0",
 ]
 
 [[package]]
@@ -2187,6 +2196,15 @@ name = "secp256k1-sys"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "11553d210db090930f4432bea123b31f70bbf693ace14504ea2a35e796c28dd2"
+dependencies = [
+ "cc",
+]
+
+[[package]]
+name = "secp256k1-sys"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "67e4b6455ee49f5901c8985b88f98fb0a0e1d90a6661f5a03f4888bd987dad29"
 dependencies = [
  "cc",
 ]
@@ -3103,7 +3121,7 @@ dependencies = [
 [[package]]
 name = "zcash_client_backend"
 version = "0.4.0"
-source = "git+https://github.com/adityapk00/librustzcash?rev=c31a04a4dbfa5a2ac013139db229f41cd421754d#c31a04a4dbfa5a2ac013139db229f41cd421754d"
+source = "git+https://github.com/zzzpotato/librustzcash?rev=49ac9fce7c1f916b986e7e86f7ff2313d85bc8cf"
 dependencies = [
  "base64 0.12.3",
  "bech32",
@@ -3123,8 +3141,8 @@ dependencies = [
 
 [[package]]
 name = "zcash_primitives"
-version = "0.4.0"
-source = "git+https://github.com/adityapk00/librustzcash?rev=c31a04a4dbfa5a2ac013139db229f41cd421754d#c31a04a4dbfa5a2ac013139db229f41cd421754d"
+version = "0.5.0"
+source = "git+https://github.com/zzzpotato/librustzcash?rev=49ac9fce7c1f916b986e7e86f7ff2313d85bc8cf"
 dependencies = [
  "aes",
  "bitvec",
@@ -3136,6 +3154,7 @@ dependencies = [
  "equihash",
  "ff",
  "fpe",
+ "funty",
  "group",
  "hex 0.4.3",
  "jubjub",
@@ -3144,7 +3163,7 @@ dependencies = [
  "rand 0.7.3",
  "rand_core 0.5.1",
  "ripemd160 0.9.1",
- "secp256k1",
+ "secp256k1 0.20.1",
  "sha2 0.9.3",
  "subtle 2.4.0",
 ]
@@ -3152,7 +3171,7 @@ dependencies = [
 [[package]]
 name = "zcash_proofs"
 version = "0.4.0"
-source = "git+https://github.com/adityapk00/librustzcash?rev=c31a04a4dbfa5a2ac013139db229f41cd421754d#c31a04a4dbfa5a2ac013139db229f41cd421754d"
+source = "git+https://github.com/zzzpotato/librustzcash?rev=49ac9fce7c1f916b986e7e86f7ff2313d85bc8cf"
 dependencies = [
  "bellman",
  "blake2b_simd",
@@ -3214,7 +3233,7 @@ dependencies = [
  "ring",
  "ripemd160 0.8.0",
  "rust-embed",
- "secp256k1",
+ "secp256k1 0.19.0",
  "sha2 0.8.2",
  "sodiumoxide",
  "subtle 2.4.0",

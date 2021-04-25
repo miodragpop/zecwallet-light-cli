@@ -51,20 +51,21 @@ group = "0.8"
 
 
 [dependencies.zcash_client_backend]
-git = "https://github.com/adityapk00/librustzcash"
-rev = "c31a04a4dbfa5a2ac013139db229f41cd421754d"
+git = "https://github.com/zzzpotato/librustzcash"
+rev = "49ac9fce7c1f916b986e7e86f7ff2313d85bc8cf"
 #path = "../../librustzcash/zcash_client_backend"
 
 [dependencies.zcash_primitives]
-git = "https://github.com/adityapk00/librustzcash"
-rev = "c31a04a4dbfa5a2ac013139db229f41cd421754d"
+version = "0.5.0"
+git = "https://github.com/zzzpotato/librustzcash"
+rev = "49ac9fce7c1f916b986e7e86f7ff2313d85bc8cf"
 #path = "../../librustzcash/zcash_primitives"
 
 features = ["transparent-inputs"]
 
 [dependencies.zcash_proofs]
-git = "https://github.com/adityapk00/librustzcash"
-rev = "c31a04a4dbfa5a2ac013139db229f41cd421754d"
+git = "https://github.com/zzzpotato/librustzcash"
+rev = "49ac9fce7c1f916b986e7e86f7ff2313d85bc8cf"
 #path = "../../librustzcash/zcash_proofs"
 features = ["multicore"]
 
