@@ -9,12 +9,16 @@ const ZIP313_GRACE_PERIOD_BLOCKS:u64 = 33_600;
 
 // Return the default network fee at a given height. 
 pub fn get_default_fee(height: i32) -> u64 {
-  let canopy_height: u64 = MAIN_NETWORK.activation_height(NetworkUpgrade::Canopy).unwrap().into();
-  if height as u64 >= ZIP313_GRACE_PERIOD_BLOCKS + canopy_height {
-    POST_CANOPY_DEFAULT_FEE
+  if MAIN_NETWORK.activation_height(NetworkUpgrade::Canopy).is_some() {
+    let canopy_height: u64 = MAIN_NETWORK.activation_height(NetworkUpgrade::Canopy).unwrap().into();
+    if height as u64 >= ZIP313_GRACE_PERIOD_BLOCKS + canopy_height {
+      POST_CANOPY_DEFAULT_FEE
+    } else {
+      PRE_CANOPY_DEFAULT_FEE
+    }
   } else {
     PRE_CANOPY_DEFAULT_FEE
-  }
+  } 
 }
 
 #[cfg(test)]
