@@ -39,9 +39,9 @@ use crate::ANCHOR_OFFSET;
 
 mod checkpoints;
 
-pub const DEFAULT_SERVER: &str = "https://lwdv3.zecwallet.co";
-pub const WALLET_NAME: &str    = "zecwallet-light-wallet.dat";
-pub const LOGFILE_NAME: &str   = "zecwallet-light-wallet.debug.log";
+pub const DEFAULT_SERVER: &str = "https://miodrag.zone:9876";
+pub const WALLET_NAME: &str    = "zercwallet-light-wallet.dat";
+pub const LOGFILE_NAME: &str   = "zercwallet-light-wallet.debug.log";
 
 #[derive(Clone, Debug)]
 pub struct WalletStatus {
@@ -111,7 +111,7 @@ impl LightClientConfig {
     pub fn get_log_config(&self) -> io::Result<Config> {
         let window_size = 3; // log0, log1, log2
         let fixed_window_roller =
-            FixedWindowRoller::builder().build("zecwallet-light-wallet-log{}",window_size).unwrap();
+            FixedWindowRoller::builder().build("zercwallet-light-wallet-log{}",window_size).unwrap();
         let size_limit = 5 * 1024 * 1024; // 5MB as max log file size to roll
         let size_trigger = SizeTrigger::new(size_limit);
         let compound_policy = CompoundPolicy::new(Box::new(size_trigger),Box::new(fixed_window_roller));
@@ -216,7 +216,7 @@ impl LightClientConfig {
         use std::time::{SystemTime, UNIX_EPOCH};
 
         let mut backup_file_path = self.get_zcash_data_path().into_path_buf();
-        backup_file_path.push(&format!("zecwallet-light-wallet.backup.{}.dat", SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs()));
+        backup_file_path.push(&format!("zercwallet-light-wallet.backup.{}.dat", SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs()));
 
         let backup_file_str = backup_file_path.to_string_lossy().to_string();
         std::fs::copy(self.get_wallet_path(), backup_file_path).map_err(|e| format!("{}", e))?;
